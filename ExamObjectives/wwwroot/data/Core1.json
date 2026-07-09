@@ -109,6 +109,160 @@
                   "Children": []
                 }
               ]
+            },
+            {
+              "Text": "Accessories",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Stylus",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Headsets",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Speakers",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Webcam",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "Docking Station",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Port Replicator",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Trackpad / Drawing Pad / Track Points",
+              "Completed": false,
+              "Children": []
+            }
+          ]
+        },
+        {
+          "Id": 3,
+          "Number": "1.3",
+          "Title": "Given a scenario, configure basic mobile device network connectivity and provide application support.",
+          "Completed": false,
+          "Bullets": [
+            {
+              "Text": "Wireless / Cellular Data Network (Enable / Disable)",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "3G / 4G / 5G",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Hotspot",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Wi-Fi",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Subscriber Identity Module (SIM / eSIM)",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "Bluetooth",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Enable Bluetooth",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Enable Pairing",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Find a Device for Pairing",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Enter the Appropriate Personal Identification Number (PIN) Code",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Test Connectivity",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "Location Services",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Global Positioning System (GPS) Services",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Cellular Location Services",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "Mobile Device Management (MDM)",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Device Configurations",
+                  "Completed": false,
+                  "Children": [
+                    {
+                      "Text": "Corporate",
+                      "Completed": false,
+                      "Children": []
+                    },
+                    {
+                      "Text": "Bring Your Own Device (BYOD)",
+                      "Completed": false,
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "Text": "Policy Enforcement",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Corporate Applications",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
             }
           ]
         }
