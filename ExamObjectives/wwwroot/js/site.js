@@ -86,6 +86,21 @@
             return fallback;
         }
     }
+    
+    function parseChildPath(value) {
+        if (!value) {
+            return [];
+        }
+
+        return value
+            .split(".")
+            .map(function (pathPart) {
+                return Number(pathPart);
+            })
+            .filter(function (pathPart) {
+                return !Number.isNaN(pathPart);
+            });
+    }
 
     function buildChecklistRequestFromElement(element) {
         return {
@@ -95,6 +110,7 @@
             objectiveId: Number(element.dataset.objectiveId || 0),
             bulletIndex: Number(element.dataset.bulletIndex || -1),
             childIndex: Number(element.dataset.childIndex || -1),
+            childPath: parseChildPath(element.dataset.childPath),
             number: element.dataset.number || "",
             title: element.dataset.title || "",
             text: element.dataset.text || "",
@@ -177,70 +193,6 @@
         return textarea;
     }
 
-    function createChildEditor(child) {
-        const row = document.createElement("div");
-        row.className = "checklist-editor-child border border-secondary-subtle rounded-3 p-3";
-
-        const header = document.createElement("div");
-        header.className = "d-flex gap-2";
-
-        const text = createInput(child?.Text || child?.text || "", "Sub-bullet text");
-        text.dataset.editorField = "child-text";
-
-        const remove = createButton("Remove", "btn btn-outline-danger btn-sm");
-
-        remove.addEventListener("click", function () {
-            row.remove();
-        });
-
-        header.appendChild(text);
-        header.appendChild(remove);
-        row.appendChild(header);
-
-        return row;
-    }
-
-    function createBulletEditor(bullet) {
-        const card = document.createElement("div");
-        card.className = "checklist-editor-bullet border border-secondary-subtle rounded-3 p-3";
-
-        const header = document.createElement("div");
-        header.className = "d-flex gap-2 mb-3";
-
-        const text = createInput(bullet?.Text || bullet?.text || "", "Bullet text");
-        text.dataset.editorField = "bullet-text";
-
-        const addChild = createButton("Add Sub-Bullet", "btn btn-outline-primary btn-sm");
-        const remove = createButton("Remove", "btn btn-outline-danger btn-sm");
-
-        const children = document.createElement("div");
-        children.className = "d-flex flex-column gap-2 ps-3";
-        children.dataset.editorField = "bullet-children";
-
-        addChild.addEventListener("click", function () {
-            children.appendChild(createChildEditor({}));
-        });
-
-        remove.addEventListener("click", function () {
-            card.remove();
-        });
-
-        header.appendChild(text);
-        header.appendChild(addChild);
-        header.appendChild(remove);
-
-        card.appendChild(header);
-        card.appendChild(children);
-
-        const existingChildren = bullet?.Children || bullet?.children || [];
-
-        existingChildren.forEach(function (child) {
-            children.appendChild(createChildEditor(child));
-        });
-
-        return card;
-    }
-
     function createObjectiveEditor(objective) {
         const card = document.createElement("div");
         card.className = "checklist-editor-objective border border-secondary-subtle rounded-3 p-3";
@@ -278,7 +230,9 @@
         bullets.dataset.editorField = "objective-bullets";
 
         addBullet.addEventListener("click", function () {
-            bullets.appendChild(createBulletEditor({}));
+            const bulletEditor = createBulletEditor({});
+            bullets.appendChild(bulletEditor);
+            scrollEditorItemIntoView(bulletEditor);
         });
 
         bulletHeader.appendChild(bulletLabel);
@@ -297,36 +251,93 @@
         return card;
     }
 
-    function collectChildrenFromContainer(container) {
-        return Array.from(container.querySelectorAll(":scope > .checklist-editor-child"))
-            .map(function (childElement) {
-                return {
-                    Text: childElement.querySelector("[data-editor-field='child-text']").value.trim(),
-                    Completed: false,
-                    Children: []
-                };
-            })
-            .filter(function (child) {
-                return child.Text.length > 0;
+    function scrollEditorItemIntoView(element) {
+        window.setTimeout(function () {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
             });
+            
+            const input = element.querySelector("input, textarea");
+            
+            if (input) {
+                input.focus();
+            }
+        }, 50);
     }
 
-    function collectBulletsFromContainer(container) {
-        return Array.from(container.querySelectorAll(":scope > .checklist-editor-bullet"))
-            .map(function (bulletElement) {
-                const childContainer = bulletElement.querySelector("[data-editor-field='bullet-children']");
+    function createChecklistEditorItem(item, options) {
+        const itemType = options?.itemType || "Bullet";
+        const placeholder = options?.placeholder || `${itemType} text`;
+        const itemClass = options?.itemClass || "checklist-editor-bullet";
 
-                return {
-                    Text: bulletElement.querySelector("[data-editor-field='bullet-text']").value.trim(),
-                    Completed: false,
-                    Children: collectChildrenFromContainer(childContainer)
-                };
-            })
-            .filter(function (bullet) {
-                return bullet.Text.length > 0;
+        const card = document.createElement("div");
+        card.className = `${itemClass} checklist-editor-nested-item border border-secondary-subtle rounded-3 p-3`;
+
+        const header = document.createElement("div");
+        header.className = "d-flex flex-column flex-lg-row gap-2 mb-3";
+
+        const text = createInput(item?.Text || item?.text || "", placeholder);
+        text.dataset.editorField = "nested-item-text";
+
+        const addChild = createButton("Add Sub-Bullet", "btn btn-outline-primary btn-sm");
+        const remove = createButton("Remove", "btn btn-outline-danger btn-sm");
+
+        const children = document.createElement("div");
+        children.className = "checklist-editor-nested-children d-flex flex-column gap-2 ps-3";
+        children.dataset.editorField = "nested-item-children";
+
+        addChild.addEventListener("click", function () {
+            const childEditor = createChecklistEditorItem({}, {
+                itemType: "Sub-Bullet",
+                placeholder: "Sub-bullet text",
+                itemClass: "checklist-editor-child"
             });
+
+            children.appendChild(childEditor);
+            scrollEditorItemIntoView(childEditor);
+        });
+
+        remove.addEventListener("click", function () {
+            card.remove();
+        });
+
+        header.appendChild(text);
+        header.appendChild(addChild);
+        header.appendChild(remove);
+
+        card.appendChild(header);
+        card.appendChild(children);
+
+        const existingChildren = item?.Children || item?.children || [];
+
+        existingChildren.forEach(function (child) {
+            children.appendChild(createChecklistEditorItem(child, {
+                itemType: "Sub-Bullet",
+                placeholder: "Sub-bullet text",
+                itemClass: "checklist-editor-child"
+            }));
+        });
+
+        return card;
     }
 
+    function createChildEditor(child) {
+        return createChecklistEditorItem(child, {
+            itemType: "Sub-Bullet",
+            placeholder: "Sub-bullet text",
+            itemClass: "checklist-editor-child"
+        });
+    }
+
+    function createBulletEditor(bullet) {
+        return createChecklistEditorItem(bullet, {
+            itemType: "Bullet",
+            placeholder: "Bullet text",
+            itemClass: "checklist-editor-bullet"
+        });
+    }
+    
     function collectObjectivesFromContainer(container) {
         return Array.from(container.querySelectorAll(":scope > .checklist-editor-objective"))
             .map(function (objectiveElement, index) {
@@ -345,6 +356,34 @@
             });
     }
 
+    function collectNestedItemsFromContainer(container) {
+        if (!container) {
+            return [];
+        }
+
+        return Array.from(container.querySelectorAll(":scope > .checklist-editor-nested-item"))
+            .map(function (itemElement) {
+                const childContainer = itemElement.querySelector(":scope > [data-editor-field='nested-item-children']");
+
+                return {
+                    Text: itemElement.querySelector(":scope > div [data-editor-field='nested-item-text']").value.trim(),
+                    Completed: false,
+                    Children: collectNestedItemsFromContainer(childContainer)
+                };
+            })
+            .filter(function (item) {
+                return item.Text.length > 0;
+            });
+    }
+
+    function collectChildrenFromContainer(container) {
+        return collectNestedItemsFromContainer(container);
+    }
+
+    function collectBulletsFromContainer(container) {
+        return collectNestedItemsFromContainer(container);
+    }
+
     function openChecklistEditor(mode, request) {
         if (!editorModal || !editorForm) {
             return;
@@ -360,6 +399,9 @@
         editorFields.objectiveId.value = request.objectiveId || 0;
         editorFields.bulletIndex.value = request.bulletIndex ?? -1;
         editorFields.childIndex.value = request.childIndex ?? -1;
+        editorFields.childIndex.dataset.childPath = Array.isArray(request.childPath)
+            ? request.childPath.join(".")
+            : "";
         editorFields.number.value = request.number || "";
         editorFields.title.value = request.title || "";
         editorFields.text.value = request.text || "";
@@ -413,6 +455,7 @@
             objectiveId: Number(editorFields.objectiveId.value || 0),
             bulletIndex: Number(editorFields.bulletIndex.value || -1),
             childIndex: Number(editorFields.childIndex.value || -1),
+            childPath: parseChildPath(editorFields.childIndex.dataset.childPath),
             number: editorFields.number.value.trim(),
             title: editorFields.title.value.trim(),
             text: editorFields.text.value.trim(),
@@ -450,6 +493,7 @@
                 objectiveId: Number(checkbox.dataset.objectiveId || 0),
                 bulletIndex: Number(checkbox.dataset.bulletIndex || -1),
                 childIndex: Number(checkbox.dataset.childIndex || -1),
+                childPath: parseChildPath(checkbox.dataset.childPath),
                 completed: checkbox.checked
             };
 
@@ -533,19 +577,25 @@
 
     if (addEditorObjectiveButton) {
         addEditorObjectiveButton.addEventListener("click", function () {
-            editorLists.objectives.appendChild(createObjectiveEditor({}));
+            const objectiveEditor = createObjectiveEditor({});
+            editorLists.objectives.appendChild(objectiveEditor);
+            scrollEditorItemIntoView(objectiveEditor);
         });
     }
 
     if (addEditorBulletButton) {
         addEditorBulletButton.addEventListener("click", function () {
-            editorLists.bullets.appendChild(createBulletEditor({}));
+            const bulletEditor = createBulletEditor({});
+            editorLists.bullets.appendChild(bulletEditor);
+            scrollEditorItemIntoView(bulletEditor);
         });
     }
 
     if (addEditorChildButton) {
         addEditorChildButton.addEventListener("click", function () {
-            editorLists.children.appendChild(createChildEditor({}));
+            const childEditor = createChildEditor({});
+            editorLists.children.appendChild(childEditor);
+            scrollEditorItemIntoView(childEditor);
         });
     }
 

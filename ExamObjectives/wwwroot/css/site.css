@@ -145,3 +145,88 @@ body {
 .checklist-editor-child input {
     min-width: 0;
 }
+
+.progress-subbullet-row:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+}
+
+.domain-progress {
+    height: 1.35rem;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.domain-progress .progress-bar {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.domain-progress-summary {
+    max-width: 34rem;
+}
+
+.nested-bullet-item {
+    margin-top: 0.5rem;
+}
+
+.nested-bullet-item.depth-0 {
+    margin-left: 0;
+}
+
+.nested-bullet-item.depth-1 {
+    margin-left: 1rem;
+}
+
+.nested-bullet-item.depth-2 {
+    margin-left: 2rem;
+}
+
+.nested-bullet-item.depth-3 {
+    margin-left: 3rem;
+}
+
+.nested-bullet-item.depth-4,
+.nested-bullet-item.depth-5,
+.nested-bullet-item.depth-6 {
+    margin-left: 4rem;
+}
+
+.nested-bullet-children {
+    margin-top: 0.5rem;
+}
+
+.nested-subbullet-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.018);
+}
+
+.nested-subbullet-row:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+}
+
+.nested-bullet-actions {
+    opacity: 0.65;
+    transition: opacity 0.15s ease;
+}
+
+.nested-subbullet-row:hover .nested-bullet-actions {
+    opacity: 1;
+}
+
+.checklist-editor-nested-item {
+    background-color: rgba(255, 255, 255, 0.025);
+}
+
+.checklist-editor-nested-children {
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+}
+
+.checklist-editor-nested-children:empty {
+    display: none !important;
+}
+
+.nested-subbullet-row {
+    flex-wrap: wrap;
+}

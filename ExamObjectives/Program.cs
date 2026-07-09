@@ -1,7 +1,10 @@
+using ExamObjectives.Services;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ChecklistService>();
 
 WebApplication app = builder.Build();
 

@@ -15,12 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ace8fdfd-c5d3-4646-a520-78a687d23060" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Controllers/HomeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExamObjectives/ExamObjectives.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/ExamObjectives.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExamObjectives/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExamObjectives/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/wwwroot/css/site.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core1.json" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core1.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExamObjectives/wwwroot/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/wwwroot/js/site.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +50,10 @@
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Services/ChecklistServiceResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_AddDomainButton.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_DomainTabs.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_ExamHeader.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_SaveStatus.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core2.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -154,7 +156,7 @@
       <workItem from="1783447410996" duration="216000" />
       <workItem from="1783447635616" duration="193000" />
       <workItem from="1783447830996" duration="2987000" />
-      <workItem from="1783625748757" duration="7112000" />
+      <workItem from="1783625748757" duration="7627000" />
     </task>
     <servers />
   </component>
