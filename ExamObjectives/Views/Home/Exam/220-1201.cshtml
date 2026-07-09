@@ -98,6 +98,15 @@
         </p>
     </div>
     
+    <div class="mb-2">
+        <button class="btn btn-success checklist-add-button rounded-pill px-4 py-2"
+                type="button"
+                data-exam-code="@core1?.ExamCode"
+                data-item-type="domain">
+            Add Domain
+        </button>
+    </div>
+    
     @if (domains.Count > 0)
     {
         <ul class="nav nav-pills flex-nowrap overflow-auto gap-2 pb-3 mb-4 exam-domain-tabs" id="domainTabs" role="tablist">
@@ -410,15 +419,6 @@
                     </div>
                 </section>
             }
-        </div>
-        
-        <div class="mt-4">
-            <button class="btn btn-success checklist-add-button"
-                    type="button"
-                    data-exam-code="@core1?.ExamCode"
-                    data-item-type="domain">
-                Add Domain
-            </button>
         </div>
         
         <div class="modal fade" id="checklistEditorModal" tabindex="-1" aria-labelledby="checklistEditorModalLabel" aria-hidden="true">
