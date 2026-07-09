@@ -1,0 +1,118 @@
+{
+  "Exam": "CompTIA A+ Core 1",
+  "ExamCode": "220-1201",
+  "Domains": [
+    {
+      "Id": 1,
+      "Number": "1.0",
+      "Title": "Mobile Devices",
+      "Weight": 13,
+      "Completed": false,
+      "Objectives": [
+        {
+          "Id": 1,
+          "Number": "1.1",
+          "Title": "Given a scenario, monitor mobile device hardware and use appropriate replacement techniques.",
+          "Completed": false,
+          "Bullets": [
+            {
+              "Text": "Battery",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Keyboard / Keys",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Random Access Memory (RAM)",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Hard Disk Drive (HDD) / Solid State Drive (SSD)",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Wireless Cards",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Physical Privacy and Security Components",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Biometrics",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Near-Field Scanner Features",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "Wi-Fi Connector / Placement",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Camera / Webcam",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Microphone",
+              "Completed": false,
+              "Children": []
+            }
+          ]
+        },
+        {
+          "Id": 2,
+          "Number": "1.2",
+          "Title": "Compare and contrast accessories and connectivity options for mobile devices.",
+          "Completed": false,
+          "Bullets": [
+            {
+              "Text": "Connection Methods",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Universal Serial Bus (USB) / USB-C / microUSB / miniUSB",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Lightning",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Near-Field Communication",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Bluetooth",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Tethering / Hotspot",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

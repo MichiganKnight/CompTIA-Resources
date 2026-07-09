@@ -1,0 +1,56 @@
+﻿@using Newtonsoft.Json
+@inject IWebHostEnvironment Environment
+@{
+    ViewData["Title"] = "Home Page";
+    
+    string core1Path = System.IO.Path.Combine(Environment.WebRootPath, "data", "Core1.json");
+    string core2Path = System.IO.Path.Combine(Environment.WebRootPath, "data", "Core2.json");
+    
+    string core1Json = await File.ReadAllTextAsync(core1Path);
+    string core2Json = await File.ReadAllTextAsync(core2Path);
+    
+    CertificationModel? core1 = JsonConvert.DeserializeObject<CertificationModel>(core1Json);
+    CertificationModel? core2 = JsonConvert.DeserializeObject<CertificationModel>(core2Json);
+}
+
+<div class="container text-center">
+    <h1 class="display-4">CompTIA A+ Exam Overview</h1>
+    
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-secondary shadow-lg h-100">
+                <div class="card-body p-4">
+                    <p class="card-title fs-4 fw-semibold mb-1">
+                        @core1?.Exam
+                    </p>
+
+                    <p class="card-text text-muted mb-0">
+                        Exam Code: <span class="fw-semibold">@core1?.ExamCode</span>
+                    </p>
+                    
+                    <a asp-controller="Home" asp-action="Core1" class="btn btn-primary">
+                        Exam Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-secondary shadow-lg h-100">
+                <div class="card-body p-4">
+                    <p class="card-title fs-4 fw-semibold mb-1">
+                        @core2?.Exam
+                    </p>
+
+                    <p class="card-text text-muted mb-0">
+                        Exam Code: <span class="fw-semibold">@core2?.ExamCode</span>
+                    </p>
+                    
+                    <a asp-controller="Home" asp-action="Core2" class="btn btn-primary">
+                        Exam Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

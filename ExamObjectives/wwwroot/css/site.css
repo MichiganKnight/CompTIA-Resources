@@ -1,0 +1,147 @@
+.form-check-input:focus,
+.form-check-input:active {
+    border-color: var(--bs-secondary);
+    box-shadow: none !important;
+    outline: 0;
+}
+
+.form-check-input:not(:checked):focus {
+    background-color: #212529;
+    border-color: var(--bs-secondary);
+}
+
+.form-check-input:checked:focus {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    box-shadow: none !important;
+}
+
+.form-switch .form-check-input:not(:checked),
+.form-switch .form-check-input:not(:checked):focus,
+.form-switch .form-check-input:not(:checked):active {
+    background-color: #212529;
+    border-color: var(--bs-secondary);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%236c757d'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked,
+.form-switch .form-check-input:checked:focus,
+.form-switch .form-check-input:checked:active {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e");
+}
+
+.form-check-input {
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+.exam-domain-card {
+    background: linear-gradient(145deg, #1f2329, #181b20);
+    color: var(--bs-body-color);
+}
+
+.exam-objective-card {
+    background-color: rgba(255, 255, 255, 0.035);
+}
+
+.exam-bullet-card {
+    background-color: rgba(255, 255, 255, 0.025);
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.exam-bullet-card:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+    border-color: rgba(var(--bs-primary-rgb), 0.45) !important;
+    transform: translateY(-1px);
+}
+
+.exam-bullet-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    display: inline-block;
+    border-radius: 999px;
+    background-color: var(--bs-secondary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-secondary-rgb), 0.15);
+}
+
+.exam-domain-tabs {
+    scrollbar-width: thin;
+}
+
+.exam-domain-tabs .nav-link {
+    white-space: nowrap;
+}
+
+.form-check-input {
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.progress-bullet-card,
+.progress-subbullet-row {
+    cursor: pointer;
+}
+
+.progress-subbullet-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.progress-subbullet-row:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+}
+
+.checklist-editor-builder {
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.checklist-editor-objective,
+.checklist-editor-bullet,
+.checklist-editor-child {
+    background-color: rgba(255, 255, 255, 0.025);
+}
+
+.checklist-editor-objective textarea,
+.checklist-editor-bullet input,
+.checklist-editor-child input {
+    min-width: 0;
+}

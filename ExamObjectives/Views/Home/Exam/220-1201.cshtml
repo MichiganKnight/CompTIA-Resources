@@ -1,0 +1,510 @@
+﻿@using Newtonsoft.Json
+@inject IWebHostEnvironment Environment
+@{
+    string jsonPath = System.IO.Path.Combine(Environment.WebRootPath, "data", "Core1.json");
+    string json = await File.ReadAllTextAsync(jsonPath);
+
+    CertificationModel? core1 = JsonConvert.DeserializeObject<CertificationModel>(json);
+
+    List<Domain>? domains = core1?.Domains ?? [];
+
+    ViewData["Title"] = $"{core1?.ExamCode}";
+}
+
+<div class="container py-5">
+    <div id="saveStatus" class="position-fixed bottom-0 end-0 m-4 badge rounded-pill text-bg-secondary px-3 py-2 d-none">
+        Saving...
+    </div>
+
+    <div class="text-center mb-5">
+        <span class="badge rounded-pill text-bg-primary px-3 py-2 mb-3">
+            @core1?.ExamCode
+        </span>
+
+        <h1 class="display-5 fw-bold mb-2">
+            @core1?.Exam
+        </h1>
+
+        <p class="text-secondary fs-5 mb-0">
+            Exam Objectives and Progress Checklist
+        </p>
+    </div>
+    
+    @if (domains.Count > 0)
+    {
+        <ul class="nav nav-pills flex-nowrap overflow-auto gap-2 pb-3 mb-4 exam-domain-tabs" id="domainTabs" role="tablist">
+            @for (int i = 0; i < domains.Count; i++)
+            {
+                Domain domain = domains[i];
+                
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill @(i == 0 ? "active" : "")"
+                            id="domain-tab-@domain.Id"
+                            data-bs-toggle="tab"
+                            data-bs-target="#domain-pane-@domain.Id"
+                            type="button"
+                            role="tab"
+                            aria-controls="domain-pane-@domain.Id"
+                            aria-selected="@(i == 0 ? "true" : "false")">
+                        @domain.Number @domain.Title
+                    </button>
+                </li>
+            }
+        </ul>
+        
+        <div class="tab-content" id="domainTabsContent">
+            @for (int i = 0; i < domains.Count; i++)
+            {
+                Domain domain = domains[i];
+                
+                <section class="tab-pane fade @(i == 0 ? "show active" : "")"
+                         id="domain-pane-@domain.Id"
+                         role="tabpanel"
+                         aria-labelledby="domain-tab-@domain.Id"
+                         tabindex="0">
+                    <div class="card exam-domain-card border-secondary-subtle shadow-sm rounded-4">
+                        <div class="card-body p-4 p-lg-5">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-4">
+                                <div>
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <span class="badge rounded-pill text-bg-dark border-secondary-subtle">
+                                            Domain @domain.Number
+                                        </span>
+                                        
+                                        <span class="badge rounded-pill text-bg-primary">
+                                            @domain.Weight% of Exam
+                                        </span>
+                                    </div>
+                                    
+                                    <h2 class="h3 fw-bold mb-2">
+                                        @domain.Title
+                                    </h2>
+                                    
+                                    <p class="text-secondary mb-0">
+                                        Review the objectives and check off each completed topic.
+                                    </p>
+                                </div>
+                                
+                                <div class="d-flex flex-column flex-sm-row align-items-start gap-2">
+                                    <button class="btn btn-outline-secondary btn-sm checklist-edit-button"
+                                            type="button"
+                                            data-exam-code="@core1?.ExamCode"
+                                            data-item-type="domain"
+                                            data-domain-id="@domain.Id"
+                                            data-number="@domain.Number"
+                                            data-title="@domain.Title"
+                                            data-weight="@domain.Weight"
+                                            data-objectives='@Html.Raw(JsonConvert.SerializeObject(domain.Objectives))'>
+                                        Edit Domain
+                                    </button>
+                                    
+                                    <button class="btn btn-outline-danger btn-sm checklist-delete-button"
+                                            type="button"
+                                            data-exam-code="@core1?.ExamCode"
+                                            data-item-type="domain"
+                                            data-domain-id="@domain.Id"
+                                            data-number="@domain.Number"
+                                            data-title="@domain.Title">
+                                        Delete Domain
+                                    </button>
+                                    
+                                    <div class="form-check form-switch pt-sm-1">
+                                        <input class="form-check-input progress-checkbox"
+                                               type="checkbox"
+                                               id="domain-@domain.Id"
+                                               data-exam-code="@core1?.ExamCode"
+                                               data-item-type="domain"
+                                               data-domain-id="@domain.Id"
+                                               checked="@domain.Completed" />
+                                        
+                                        <label class="form-check-label text-secondary" for="@domain.Id">
+                                            Domain Complete
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <button class="btn btn-primary btn-sm checklist-add-button"
+                                        type="button"
+                                        data-exam-code="@core1?.ExamCode"
+                                        data-item-type="objective"
+                                        data-domain-id="@domain.Id">
+                                    Add Objective
+                                </button>
+                            </div>
+                            
+                            <div class="d-flex flex-column gap-3">
+                                @foreach (Objective objective in domain.Objectives)
+                                {
+                                    <article class="exam-objective-card border border-seondary-subtle rounded-4 p-4">
+                                        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start gap-3 mb-4">
+                                            <div>
+                                                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                                                    <span class="badge rounded-pill text-bg-secondary">
+                                                        Objective @objective.Number
+                                                    </span>
+                                                </div>
+                                                
+                                                <h3 class="h5 fw-semibold lh-base mb-0">
+                                                    @objective.Title
+                                                </h3>
+                                            </div>
+                                            
+                                            <div class="d-flex flex-column flex-sm-row align-items-start gap-2">
+                                                <button class="btn btn-outline-secondary btn-sm checklist-edit-button"
+                                                        type="button"
+                                                        data-exam-code="@core1?.ExamCode"
+                                                        data-item-type="objective"
+                                                        data-domain-id="@domain.Id"
+                                                        data-objective-id="@objective.Id"
+                                                        data-number="@objective.Number"
+                                                        data-title="@objective.Title"
+                                                        data-bullets='@Html.Raw(JsonConvert.SerializeObject(objective.Bullets))'>
+                                                    Edit
+                                                </button>
+
+                                                <button class="btn btn-outline-danger btn-sm checklist-delete-button"
+                                                        type="button"
+                                                        data-exam-code="@core1?.ExamCode"
+                                                        data-item-type="objective"
+                                                        data-domain-id="@domain.Id"
+                                                        data-objective-id="@objective.Id">
+                                                    Delete
+                                                </button>
+
+                                                <div class="form-check form-switch pt-sm-1">
+                                                    <input class="form-check-input progress-checkbox"
+                                                           type="checkbox"
+                                                           id="objective-@domain.Id-@objective.Id"
+                                                           data-exam-code="@core1?.ExamCode"
+                                                           data-item-type="objective"
+                                                           data-domain-id="@domain.Id"
+                                                           data-objective-id="@objective.Id"
+                                                           checked="@objective.Completed" />
+
+                                                    <label class="form-check-label text-secondary" for="objective-@domain.Id-@objective.Id">
+                                                        Objective Complete
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <button class="btn btn-outline-primary btn-sm checklist-add-button"
+                                                    type="button"
+                                                    data-exam-code="@core1?.ExamCode"
+                                                    data-item-type="bullet"
+                                                    data-domain-id="@domain.Id"
+                                                    data-objective-id="@objective.Id">
+                                                Add Bullet
+                                            </button>
+                                        </div>
+                                        
+                                        @if (objective.Bullets.Count > 0)
+                                        {
+                                            <div class="row g-3">
+                                                @for (int bulletIndex = 0; bulletIndex < objective.Bullets.Count; bulletIndex++)
+                                                {
+                                                    Bullet bullet = objective.Bullets[bulletIndex];
+                                                    bool hasChildren = bullet.Children.Count > 0;
+                                                    
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="exam-bullet-card border border-seondary-subtle rounded-3 p-3 h-100 @(hasChildren ? "" : "progress-bullet-card")">
+                                                            @if (hasChildren)
+                                                            {
+                                                                <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                                                                    <div class="d-flex align-items-center gap-2 fw-semibold">
+                                                                        <span class="exam-bullet-dot"></span>
+                                                                        <span>@bullet.Text</span>
+                                                                    </div>
+                                                                    
+                                                                    <div class="btn-group btn-group-sm">
+                                                                        <button class="btn btn-outline-secondary checklist-edit-button"
+                                                                                type="button"
+                                                                                data-exam-code="@core1?.ExamCode"
+                                                                                data-item-type="bullet"
+                                                                                data-domain-id="@domain.Id"
+                                                                                data-objective-id="@objective.Id"
+                                                                                data-bullet-index="@bulletIndex"
+                                                                                data-text="@bullet.Text"
+                                                                                data-children='@Html.Raw(JsonConvert.SerializeObject(bullet.Children))'>
+                                                                            Edit
+                                                                        </button>
+
+                                                                        <button class="btn btn-outline-danger checklist-delete-button"
+                                                                                type="button"
+                                                                                data-exam-code="@core1?.ExamCode"
+                                                                                data-item-type="bullet"
+                                                                                data-domain-id="@domain.Id"
+                                                                                data-objective-id="@objective.Id"
+                                                                                data-bullet-index="@bulletIndex">
+                                                                            Delete
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="mb-3">
+                                                                    <button class="btn btn-outline-primary btn-sm checklist-add-button"
+                                                                            type="button"
+                                                                            data-exam-code="@core1?.ExamCode"
+                                                                            data-item-type="child-bullet"
+                                                                            data-domain-id="@domain.Id"
+                                                                            data-objective-id="@objective.Id"
+                                                                            data-bullet-index="@bulletIndex">
+                                                                        Add Child
+                                                                    </button>
+                                                                </div>
+                                                                
+                                                                <div class="d-flex flex-column gap-2 ps-3">
+                                                                    @for (int childIndex = 0; childIndex < bullet.Children.Count; childIndex++)
+                                                                    {
+                                                                        Bullet child = bullet.Children[childIndex];
+                                                                        
+                                                                        <div class="progress-subbullet-row rounded-3 px-3 py-2">
+                                                                            <input class="form-check-input progress-checkbox mt-0"
+                                                                                   type="checkbox"
+                                                                                   id="bullet-child-@domain.Id-@objective.Id-@bulletIndex-@childIndex"
+                                                                                   data-exam-code="@core1?.ExamCode"
+                                                                                   data-item-type="child-bullet"
+                                                                                   data-domain-id="@domain.Id"
+                                                                                   data-objective-id="@objective.Id"
+                                                                                   data-bullet-index="@bulletIndex"
+                                                                                   data-child-index="@childIndex"
+                                                                                   checked="@child.Completed" />
+
+                                                                            <label class="form-check-label text-body-secondary w-100" for="bullet-child-@domain.Id-@objective.Id-@bulletIndex-@childIndex">
+                                                                                @child.Text
+                                                                            </label>
+
+                                                                            <div class="btn-group btn-group-sm ms-auto">
+                                                                                <button class="btn btn-outline-secondary checklist-edit-button"
+                                                                                        type="button"
+                                                                                        data-exam-code="@core1?.ExamCode"
+                                                                                        data-item-type="child-bullet"
+                                                                                        data-domain-id="@domain.Id"
+                                                                                        data-objective-id="@objective.Id"
+                                                                                        data-bullet-index="@bulletIndex"
+                                                                                        data-child-index="@childIndex"
+                                                                                        data-text="@child.Text"
+                                                                                        data-children='@Html.Raw(JsonConvert.SerializeObject(child.Children))'>
+                                                                                    Edit
+                                                                                </button>
+
+                                                                                <button class="btn btn-outline-danger checklist-delete-button"
+                                                                                        type="button"
+                                                                                        data-exam-code="@core1?.ExamCode"
+                                                                                        data-item-type="child-bullet"
+                                                                                        data-domain-id="@domain.Id"
+                                                                                        data-objective-id="@objective.Id"
+                                                                                        data-bullet-index="@bulletIndex"
+                                                                                        data-child-index="@childIndex">
+                                                                                    Delete
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="d-flex justify-content-between align-items-start gap-2">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input progress-checkbox"
+                                                                               type="checkbox"
+                                                                               id="bullet-@domain.Id-@objective.Id-@bulletIndex"
+                                                                               data-exam-code="@core1?.ExamCode"
+                                                                               data-item-type="bullet"
+                                                                               data-domain-id="@domain.Id"
+                                                                               data-objective-id="@objective.Id"
+                                                                               data-bullet-index="@bulletIndex"
+                                                                               checked="@bullet.Completed" />
+
+                                                                        <label class="form-check-label text-body-secondary w-100" for="bullet-@domain.Id-@objective.Id-@bulletIndex">
+                                                                            @bullet.Text
+                                                                        </label>
+                                                                    </div>
+                                                                    
+                                                                    <div class="btn-group btn-group-sm">
+                                                                        <button class="btn btn-outline-secondary checklist-edit-button"
+                                                                                type="button"
+                                                                                data-exam-code="@core1?.ExamCode"
+                                                                                data-item-type="bullet"
+                                                                                data-domain-id="@domain.Id"
+                                                                                data-objective-id="@objective.Id"
+                                                                                data-bullet-index="@bulletIndex"
+                                                                                data-text="@bullet.Text"
+                                                                                data-children='@Html.Raw(JsonConvert.SerializeObject(bullet.Children))'>
+                                                                            Edit
+                                                                        </button>
+
+                                                                        <button class="btn btn-outline-danger checklist-delete-button"
+                                                                                type="button"
+                                                                                data-exam-code="@core1?.ExamCode"
+                                                                                data-item-type="bullet"
+                                                                                data-domain-id="@domain.Id"
+                                                                                data-objective-id="@objective.Id"
+                                                                                data-bullet-index="@bulletIndex">
+                                                                            Delete
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </article>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+        </div>
+        
+        <div class="mt-4">
+            <button class="btn btn-success checklist-add-button"
+                    type="button"
+                    data-exam-code="@core1?.ExamCode"
+                    data-item-type="domain">
+                Add Domain
+            </button>
+        </div>
+        
+        <div class="modal fade" id="checklistEditorModal" tabindex="-1" aria-labelledby="checklistEditorModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content bg-dark text-body border-secondary-subtle rounded-4">
+                    <div class="modal-header border-secondary-subtle">
+                        <div>
+                            <h2 class="modal-title h5-5" id="checklistEditorModalLabel">
+                                Edit Checklist Item
+                            </h2>
+                            
+                            <p class="text-secondary mb-0 small" id="checklistEditorModalDescription">
+                                Manage the item details and nested checklist content in one place.
+                            </p>
+                        </div>
+                        
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form id="checklistEditorForm">
+                            <input type="hidden" id="checklistEditorMode" />
+                            <input type="hidden" id="checklistEditorExamCode" />
+                            <input type="hidden" id="checklistEditorItemType" />
+                            <input type="hidden" id="checklistEditorDomainId" />
+                            <input type="hidden" id="checklistEditorObjectiveId" />
+                            <input type="hidden" id="checklistEditorBulletIndex" />
+                            <input type="hidden" id="checklistEditorChildIndex" />
+                            
+                            <div id="checklistEditorNumberGroup" class="mb-3">
+                                <label class="form-label" for="checklistEditorNumber">
+                                    Number
+                                </label>
+
+                                <input class="form-control bg-dark text-body border-secondary" id="checklistEditorNumber" placeholder="Example: 1.0 or 1.1" />
+                            </div>
+
+                            <div id="checklistEditorTitleGroup" class="mb-3">
+                                <label class="form-label" for="checklistEditorTitle">
+                                    Title
+                                </label>
+
+                                <textarea class="form-control bg-dark text-body border-secondary" id="checklistEditorTitle" rows="3"></textarea>
+                            </div>
+
+                            <div id="checklistEditorTextGroup" class="mb-3">
+                                <label class="form-label" for="checklistEditorText">
+                                    Text
+                                </label>
+
+                                <textarea class="form-control bg-dark text-body border-secondary" id="checklistEditorText" rows="3"></textarea>
+                            </div>
+
+                            <div id="checklistEditorWeightGroup" class="mb-3">
+                                <label class="form-label" for="checklistEditorWeight">
+                                    Exam Weight Percentage
+                                </label>
+
+                                <input class="form-control bg-dark text-body border-secondary" id="checklistEditorWeight" type="number" min="0" max="100" />
+                            </div>
+                            
+                            <div id="checklistEditorObjectiveBuilder" class="checklist-editor-builder d-none">
+                                <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                                    <div>
+                                        <h3 class="h6 mb-1">
+                                            Objectives
+                                        </h3>
+
+                                        <p class="text-secondary small mb-0">
+                                            Add objectives, then add bullets and sub-bullets beneath each objective.
+                                        </p>
+                                    </div>
+
+                                    <button class="btn btn-outline-primary btn-sm" type="button" id="addEditorObjective">
+                                        Add Objective
+                                    </button>
+                                </div>
+
+                                <div class="d-flex flex-column gap-3" id="editorObjectives"></div>
+                            </div>
+                            
+                            <div id="checklistEditorBulletBuilder" class="checklist-editor-builder d-none">
+                                <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                                    <div>
+                                        <h3 class="h6 mb-1">
+                                            Bullets
+                                        </h3>
+
+                                        <p class="text-secondary small mb-0">
+                                            Add bullets and optional sub-bullets from the same control.
+                                        </p>
+                                    </div>
+
+                                    <button class="btn btn-outline-primary btn-sm" type="button" id="addEditorBullet">
+                                        Add Bullet
+                                    </button>
+                                </div>
+
+                                <div class="d-flex flex-column gap-3" id="editorBullets"></div>
+                            </div>
+
+                            <div id="checklistEditorChildBuilder" class="checklist-editor-builder d-none">
+                                <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                                    <div>
+                                        <h3 class="h6 mb-1">
+                                            Sub-Bullets
+                                        </h3>
+
+                                        <p class="text-secondary small mb-0">
+                                            Add nested items under this bullet.
+                                        </p>
+                                    </div>
+
+                                    <button class="btn btn-outline-primary btn-sm" type="button" id="addEditorChild">
+                                        Add Sub-Bullet
+                                    </button>
+                                </div>
+
+                                <div class="d-flex flex-column gap-3" id="editorChildren"></div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer border-secondary-subtle">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        
+                        <button type="button" class="btn btn-primary" id="saveChecklistEditor">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
