@@ -19,9 +19,31 @@ namespace ExamObjectives.Helpers
             return domain.Objectives.Sum(objective => CountBullets(objective.Bullets));
         }
 
+        public static int GetTotalCompletedBulletCount(List<Domain> domains)
+        {
+            return domains.Sum(GetDomainCompletedBulletCount);
+        }
+
         public static int GetDomainCompletedBulletCount(Domain domain)
         {
             return domain.Objectives.Sum(objective => CountCompletedBullets(objective.Bullets));
+        }
+
+        public static int GetTotalBulletCount(List<Domain> domains)
+        {
+            return domains.Sum(GetDomainBulletCount);
+        }
+        
+        public static int GetTotalProgressPercentage(List<Domain> domains)
+        {
+            int total = GetTotalBulletCount(domains);
+            
+            if (total == 0)
+            {
+                return 0;
+            }
+            
+            return (int)Math.Round((double)GetTotalCompletedBulletCount(domains) / total * 100);
         }
 
         public static int GetDomainProgressPercentage(Domain domain)

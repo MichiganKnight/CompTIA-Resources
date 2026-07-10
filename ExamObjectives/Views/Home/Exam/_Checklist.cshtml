@@ -1,5 +1,6 @@
 ﻿@model CertificationModel
 
+@using System.Diagnostics
 @using ExamObjectives.Models.ViewModels
 @using Newtonsoft.Json
 @using static ExamObjectives.Helpers.BulletHelpers;
@@ -39,7 +40,7 @@
 
     @if (domains.Count > 0)
     {
-        <ul class="nav nav-pills flex-nowrap overflow-auto gap-2 pb-3 mb-4 exam-domain-tabs" id="domainTabs" role="tablist">
+        <ul class="nav nav-pills flex-nowrap overflow-auto gap-2 pb-3 mb-2 exam-domain-tabs" id="domainTabs" role="tablist">
             @for (int i = 0; i < domains.Count; i++)
             {
                 Domain domain = domains[i];
@@ -58,6 +59,32 @@
                 </li>
             }
         </ul>
+        
+        <div class="mb-2">
+            @{
+                int totalCompletedBullets = GetTotalCompletedBulletCount(domains);
+                int totalBulletsCount = GetTotalBulletCount(domains);
+                int totalProgressPercentage = GetTotalProgressPercentage(domains);
+            }
+
+            <div class="progress-summary">
+                <div class="d-flex justify-content-between align-items-center small text-secondary mb-2">
+                    <span>
+                        Total Progress:
+                    </span>
+
+                    <span>
+                        @totalCompletedBullets / @totalBulletsCount Complete
+                    </span>
+                </div>
+
+                <div class="progress domain-progress" role="progressbar" aria-valuenow="@totalProgressPercentage" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: @totalProgressPercentage%">
+                        @totalProgressPercentage%
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="tab-content" id="domainTabsContent">
             @for (int i = 0; i < domains.Count; i++)

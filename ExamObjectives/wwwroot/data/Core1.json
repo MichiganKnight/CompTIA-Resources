@@ -263,6 +263,222 @@
                   "Children": []
                 }
               ]
+            },
+            {
+              "Text": "Mobile Device Synchronization",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Recognizing Data Caps",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Calendar",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Contacts",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Business Applications",
+                  "Completed": false,
+                  "Children": [
+                    {
+                      "Text": "Mail",
+                      "Completed": false,
+                      "Children": []
+                    },
+                    {
+                      "Text": "Cloud Storage",
+                      "Completed": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "Number": "2.0",
+      "Title": "Networking",
+      "Weight": 23,
+      "Completed": false,
+      "Objectives": [
+        {
+          "Id": 1,
+          "Number": "2.1",
+          "Title": "Compare and contrast Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) ports, protocols, and their purposes.",
+          "Completed": false,
+          "Bullets": [
+            {
+              "Text": "Ports and Protocols",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "20 - 21 - File Transfer Protocol (FTP)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "22 - Secure Shell (SSH)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "23 - Telnet",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "25 - Simple Mail Transfer Protocol (SMTP)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "53 - Domain Name System (DNS)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "67 / 68 - Dynamic Host Configuration (DHCP)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "80 - Hypertext Transfer Protocol (HTTP)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "110 - Post Office Protocol 3 (POP3)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "143 - Internet Mail Access Protocol (IMAP)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "137 - 139 Network Basic Input / Output System (NetBIOS) / NetBIOS over TCP / IP (NetBT)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "389 - Lightweight Directory Access Protocol (LDAP)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "443 - Hypertext Transfer Protocol Secure (HTTPS)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "445 - Server Message Block (SMB) / Common Internet File System (CIFS)",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "3389 - Remote Desktop Protocol (RDP)",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "TCP vs UDP",
+              "Completed": true,
+              "Children": []
+            }
+          ]
+        },
+        {
+          "Id": 2,
+          "Number": "2.2",
+          "Title": "Explain wireless networking technologies.",
+          "Completed": false,
+          "Bullets": [
+            {
+              "Text": "Frequencies",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "2.4 GHz",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "5 Ghz",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "6 Ghz",
+                  "Completed": false,
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Text": "Channels",
+              "Completed": false,
+              "Children": [
+                {
+                  "Text": "Regulations",
+                  "Completed": false,
+                  "Children": []
+                },
+                {
+                  "Text": "Channel Selection",
+                  "Completed": false,
+                  "Children": [
+                    {
+                      "Text": "Widths",
+                      "Completed": false,
+                      "Children": []
+                    },
+                    {
+                      "Text": "Frequencies",
+                      "Completed": false,
+                      "Children": []
+                    },
+                    {
+                      "Text": "Bands",
+                      "Completed": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Text": "Bluetooth",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "802.11 Standards",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "NFC",
+              "Completed": false,
+              "Children": []
+            },
+            {
+              "Text": "Radio-Frequency Identification (RFID)",
+              "Completed": false,
+              "Children": []
             }
           ]
         }

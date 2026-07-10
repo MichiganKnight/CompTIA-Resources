@@ -15,8 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ace8fdfd-c5d3-4646-a520-78a687d23060" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/ExamObjectives.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/ExamObjectives.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_BulletCard.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_BulletCard.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Helpers/BulletHelpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Helpers/BulletHelpers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/_Checklist.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/_Checklist.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core1.json" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core1.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +98,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.ExamObjectives: http">
+  <component name="RunManager" selected="Publish to folder.Publish App">
     <configuration name="Publish App" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" delete_existing_files="true" platform="Any CPU" target_folder="G:/Various Programs/Publish/ProgressTracker" target_framework="net10.0" uuid_high="176964908628920148" uuid_low="-9138162416784713361" />
       <method v="2" />
@@ -156,7 +157,7 @@
       <workItem from="1783447635616" duration="193000" />
       <workItem from="1783447830996" duration="2987000" />
       <workItem from="1783625748757" duration="8063000" />
-      <workItem from="1783710410083" duration="3159000" />
+      <workItem from="1783710410083" duration="4271000" />
     </task>
     <servers />
   </component>
