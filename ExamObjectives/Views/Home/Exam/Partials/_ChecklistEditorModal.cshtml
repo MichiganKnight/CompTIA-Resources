@@ -1,0 +1,133 @@
+﻿<div class="modal fade" id="checklistEditorModal" tabindex="-1" aria-labelledby="checklistEditorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-body border-secondary-subtle rounded-4">
+            <div class="modal-header border-secondary-subtle">
+                <div>
+                    <h2 class="modal-title h5-5" id="checklistEditorModalLabel">
+                        Edit Checklist Item
+                    </h2>
+
+                    <p class="text-secondary mb-0 small" id="checklistEditorModalDescription">
+                        Manage the item details and nested checklist content in one place.
+                    </p>
+                </div>
+
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="checklistEditorForm">
+                    <input type="hidden" id="checklistEditorMode"/>
+                    <input type="hidden" id="checklistEditorExamCode"/>
+                    <input type="hidden" id="checklistEditorItemType"/>
+                    <input type="hidden" id="checklistEditorDomainId"/>
+                    <input type="hidden" id="checklistEditorObjectiveId"/>
+                    <input type="hidden" id="checklistEditorBulletIndex"/>
+                    <input type="hidden" id="checklistEditorChildIndex"/>
+
+                    <div id="checklistEditorNumberGroup" class="mb-3">
+                        <label class="form-label" for="checklistEditorNumber">
+                            Number
+                        </label>
+
+                        <input class="form-control bg-dark text-body border-secondary" id="checklistEditorNumber" placeholder="Example: 1.0 or 1.1"/>
+                    </div>
+
+                    <div id="checklistEditorTitleGroup" class="mb-3">
+                        <label class="form-label" for="checklistEditorTitle">
+                            Title
+                        </label>
+
+                        <textarea class="form-control bg-dark text-body border-secondary" id="checklistEditorTitle" rows="3"></textarea>
+                    </div>
+
+                    <div id="checklistEditorTextGroup" class="mb-3">
+                        <label class="form-label" for="checklistEditorText">
+                            Text
+                        </label>
+
+                        <textarea class="form-control bg-dark text-body border-secondary" id="checklistEditorText" rows="3"></textarea>
+                    </div>
+
+                    <div id="checklistEditorWeightGroup" class="mb-3">
+                        <label class="form-label" for="checklistEditorWeight">
+                            Exam Weight Percentage
+                        </label>
+
+                        <input class="form-control bg-dark text-body border-secondary" id="checklistEditorWeight" type="number" min="0" max="100"/>
+                    </div>
+
+                    <div id="checklistEditorObjectiveBuilder" class="checklist-editor-builder d-none">
+                        <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                            <div>
+                                <h3 class="h6 mb-1">
+                                    Objectives
+                                </h3>
+
+                                <p class="text-secondary small mb-0">
+                                    Add objectives, then add bullets and sub-bullets beneath each objective.
+                                </p>
+                            </div>
+
+                            <button class="btn btn-outline-primary btn-sm" type="button" id="addEditorObjective">
+                                Add Objective
+                            </button>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3" id="editorObjectives"></div>
+                    </div>
+
+                    <div id="checklistEditorBulletBuilder" class="checklist-editor-builder d-none">
+                        <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                            <div>
+                                <h3 class="h6 mb-1">
+                                    Bullets
+                                </h3>
+
+                                <p class="text-secondary small mb-0">
+                                    Add bullets and optional sub-bullets from the same control.
+                                </p>
+                            </div>
+
+                            <button class="btn btn-outline-primary btn-sm" type="button" id="addEditorBullet">
+                                Add Bullet
+                            </button>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3" id="editorBullets"></div>
+                    </div>
+
+                    <div id="checklistEditorChildBuilder" class="checklist-editor-builder d-none">
+                        <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                            <div>
+                                <h3 class="h6 mb-1">
+                                    Sub-Bullets
+                                </h3>
+
+                                <p class="text-secondary small mb-0">
+                                    Add nested items under this bullet.
+                                </p>
+                            </div>
+
+                            <button class="btn btn-outline-primary btn-sm" type="button" id="addEditorChild">
+                                Add Sub-Bullet
+                            </button>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3" id="editorChildren"></div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer border-secondary-subtle">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button type="button" class="btn btn-primary" id="saveChecklistEditor">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

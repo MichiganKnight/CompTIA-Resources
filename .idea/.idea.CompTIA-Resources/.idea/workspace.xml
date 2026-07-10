@@ -15,9 +15,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ace8fdfd-c5d3-4646-a520-78a687d23060" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core2.json" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Models/ErrorViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Models/ViewModels/ErrorViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Services/ChecklistService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Services/ChecklistService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Shared/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Shared/Error.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,14 +47,15 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Helpers/BulletHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Models/RequestModels.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Models/ViewModels/NestedBulletViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Services/ChecklistService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Services/ChecklistServiceResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_AddDomainButton.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_DomainTabs.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_ExamHeader.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_SaveStatus.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_BulletCard.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_ChecklistEditorModal.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_NestedBullet.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/_Checklist.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/wwwroot/data/Core2.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -96,7 +100,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Publish to folder.Publish App">
+  <component name="RunManager" selected=".NET Launch Settings Profile.ExamObjectives: http">
     <configuration name="Publish App" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" delete_existing_files="true" platform="Any CPU" target_folder="G:/Various Programs/Publish/ProgressTracker" target_framework="net10.0" uuid_high="176964908628920148" uuid_low="-9138162416784713361" />
       <method v="2" />
@@ -155,6 +159,7 @@
       <workItem from="1783447635616" duration="193000" />
       <workItem from="1783447830996" duration="2987000" />
       <workItem from="1783625748757" duration="8063000" />
+      <workItem from="1783710410083" duration="2798000" />
     </task>
     <servers />
   </component>

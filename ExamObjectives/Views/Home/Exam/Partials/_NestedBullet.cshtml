@@ -1,0 +1,82 @@
+﻿@model ExamObjectives.Models.ViewModels.NestedBulletViewModel
+
+@using ExamObjectives.Models.ViewModels
+@using Newtonsoft.Json
+@using static ExamObjectives.Helpers.BulletHelpers
+
+@{
+    string pathValue = GetPathValue(Model.ParentPath);
+
+    string checkboxId = $"bullet-child-{Model.DomainId}-{Model.ObjectiveId}-{Model.BulletIndex}-{pathValue.Replace(".", "-")}";
+}
+
+<div class="nested-bullet-item depth-@Model.Depth">
+    <div class="progress-subbullet-row nested-subbullet-row rounded-3 px-3 py-2">
+        <input class="form-check-input progress-checkbox"
+               type="checkbox"
+               id="@checkboxId"
+               data-exam-code="@Model.ExamCode"
+               data-item-type="child-bullet"
+               data-domain-id="@Model.DomainId"
+               data-objective-id="@Model.ObjectiveId"
+               data-bullet-index="@Model.BulletIndex"
+               data-child-path="@pathValue"
+               checked="@Model.Bullet.Completed"/>
+
+        <label class="form-check-label text-body-secondary flex-grow-1" for="@checkboxId">
+            @Model.Bullet.Text
+        </label>
+
+        <div class="btn-group btn-group-sm nested-bullet-actions">
+            <button class="btn btn-outline-secondary checklist-edit-button"
+                    type="button"
+                    data-exam-code="@Model.ExamCode"
+                    data-item-type="child-bullet"
+                    data-domain-id="@Model.DomainId"
+                    data-objective-id="@Model.ObjectiveId"
+                    data-bullet-index="@Model.BulletIndex"
+                    data-child-path="@pathValue"
+                    data-text="@Model.Bullet.Text"
+                    data-children='@Html.Raw(JsonConvert.SerializeObject(Model.Bullet.Children))'>
+                Edit
+            </button>
+
+            <button class="btn btn-outline-danger checklist-delete-button"
+                    type="button"
+                    data-exam-code="@Model.ExamCode"
+                    data-item-type="child-bullet"
+                    data-domain-id="@Model.DomainId"
+                    data-objective-id="@Model.ObjectiveId"
+                    data-bullet-index="@Model.BulletIndex"
+                    data-child-path="@pathValue">
+                Delete
+            </button>
+        </div>
+    </div>
+
+    @if (Model.Bullet.Children.Any())
+    {
+        <div class="nested-bullet-children">
+            @for (int i = 0; i < Model.Bullet.Children.Count; i++)
+            {
+                List<int> childPath =
+                [
+                    ..Model.ParentPath,
+                    i
+                ];
+
+                <partial name="Exam/Partials/_NestedBullet"
+                         model="new NestedBulletViewModel
+                         {
+                             Bullet = Model.Bullet.Children[i],
+                             ExamCode = Model.ExamCode,
+                             DomainId = Model.DomainId,
+                             ObjectiveId = Model.ObjectiveId,
+                             BulletIndex = Model.BulletIndex,
+                             ParentPath = childPath,
+                             Depth = Model.Depth + 1
+                         }"/>
+            }
+        </div>
+    }
+</div>

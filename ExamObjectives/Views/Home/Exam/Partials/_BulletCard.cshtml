@@ -1,0 +1,125 @@
+﻿@model ExamObjectives.Models.ViewModels.BulletCardViewModel
+
+@using Newtonsoft.Json
+@using ExamObjectives.Models.ViewModels
+
+@{
+    Bullet bullet = Model.Bullet;
+    Domain domain = Model.Domain;
+    Objective objective = Model.Objective;
+    string examCode = Model.ExamCode;
+    int bulletIndex = Model.BulletIndex;
+
+    bool hasChildren = bullet.Children.Count > 0;
+}
+
+<div class="col-12 col-lg-6">
+    <div class="exam-bullet-card border border-seondary-subtle rounded-3 p-3 h-100 @(hasChildren ? "" : "progress-bullet-card")">
+        @if (hasChildren)
+        {
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                <div class="d-flex align-items-center gap-2 fw-semibold">
+                    <span class="exam-bullet-dot"></span>
+                    <span>@bullet.Text</span>
+                </div>
+
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary checklist-edit-button"
+                            type="button"
+                            data-exam-code="@examCode"
+                            data-item-type="bullet"
+                            data-domain-id="@domain.Id"
+                            data-objective-id="@objective.Id"
+                            data-bullet-index="@bulletIndex"
+                            data-text="@bullet.Text"
+                            data-children='@Html.Raw(JsonConvert.SerializeObject(bullet.Children))'>
+                        Edit
+                    </button>
+
+                    <button class="btn btn-outline-danger checklist-delete-button"
+                            type="button"
+                            data-exam-code="@examCode"
+                            data-item-type="bullet"
+                            data-domain-id="@domain.Id"
+                            data-objective-id="@objective.Id"
+                            data-bullet-index="@bulletIndex">
+                        Delete
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-outline-primary btn-sm checklist-add-button"
+                        type="button"
+                        data-exam-code="@examCode"
+                        data-item-type="child-bullet"
+                        data-domain-id="@domain.Id"
+                        data-objective-id="@objective.Id"
+                        data-bullet-index="@bulletIndex">
+                    Add Child
+                </button>
+            </div>
+
+            <div class="d-flex flex-column gap-2 ps-3">
+                @for (int childIndex = 0; childIndex < bullet.Children.Count; childIndex++)
+                {
+                    <partial name="Exam/Partials/_NestedBullet"
+                             model='new NestedBulletViewModel
+                             {
+                                 Bullet = bullet.Children[childIndex],
+                                 ExamCode = examCode,
+                                 DomainId = domain.Id,
+                                 ObjectiveId = objective.Id,
+                                 BulletIndex = bulletIndex,
+                                 ParentPath = [childIndex],
+                                 Depth = 0
+                             }'/>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="d-flex justify-content-between align-items-start gap-2">
+                <div class="form-check">
+                    <input class="form-check-input progress-checkbox"
+                           type="checkbox"
+                           id="bullet-@domain.Id-@objective.Id-@bulletIndex"
+                           data-exam-code="@examCode"
+                           data-item-type="bullet"
+                           data-domain-id="@domain.Id"
+                           data-objective-id="@objective.Id"
+                           data-bullet-index="@bulletIndex"
+                           checked="@bullet.Completed"/>
+
+                    <label class="form-check-label text-body-secondary w-100" for="bullet-@domain.Id-@objective.Id-@bulletIndex">
+                        @bullet.Text
+                    </label>
+                </div>
+
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary checklist-edit-button"
+                            type="button"
+                            data-exam-code="@examCode"
+                            data-item-type="bullet"
+                            data-domain-id="@domain.Id"
+                            data-objective-id="@objective.Id"
+                            data-bullet-index="@bulletIndex"
+                            data-text="@bullet.Text"
+                            data-children='@Html.Raw(JsonConvert.SerializeObject(bullet.Children))'>
+                        Edit
+                    </button>
+
+                    <button class="btn btn-outline-danger checklist-delete-button"
+                            type="button"
+                            data-exam-code="@examCode"
+                            data-item-type="bullet"
+                            data-domain-id="@domain.Id"
+                            data-objective-id="@objective.Id"
+                            data-bullet-index="@bulletIndex">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

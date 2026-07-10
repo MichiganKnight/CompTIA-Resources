@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ExamObjectives.Models;
+using ExamObjectives.Models.ViewModels;
 using ExamObjectives.Services;
 
 namespace ExamObjectives.Controllers
@@ -19,14 +20,18 @@ namespace ExamObjectives.Controllers
             return View();
         }
 
-        public IActionResult Core1()
+        public async Task<IActionResult> Core1()
         {
-            return View("~/Views/Home/Exam/220-1201.cshtml");
+            CertificationModel model = await _checklistService.LoadExamAsync("Core1.json");
+
+            return View("~/Views/Home/Exam/_Checklist.cshtml", model);
         }
         
-        public IActionResult Core2()
+        public async Task<IActionResult> Core2()
         {
-            return View("~/Views/Home/Exam/220-1202.cshtml");
+            CertificationModel model = await _checklistService.LoadExamAsync("Core2.json");
+
+            return View("~/Views/Home/Exam/_Checklist.cshtml", model);
         }
 
         [HttpPost]

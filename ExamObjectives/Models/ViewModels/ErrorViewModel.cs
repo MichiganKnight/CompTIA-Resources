@@ -1,4 +1,4 @@
-namespace ExamObjectives.Models
+namespace ExamObjectives.Models.ViewModels
 {
     public class ErrorViewModel
     {

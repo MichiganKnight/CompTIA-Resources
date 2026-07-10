@@ -12,6 +12,21 @@ namespace ExamObjectives.Services
             _environment = environment;
         }
 
+        public async Task<CertificationModel> LoadExamAsync(string jsonFile)
+        {
+            string jsonPath = Path.Combine(_environment.WebRootPath, "data", jsonFile);
+            string json = await File.ReadAllTextAsync(jsonPath);
+            
+            CertificationModel? exam = JsonConvert.DeserializeObject<CertificationModel>(json);
+
+            if (exam == null)
+            {
+                throw new InvalidOperationException($"Error Loading Exam: {jsonFile}");
+            }
+            
+            return exam;
+        }
+
         public async Task<CertificationModel?> LoadCertificationAsync(string examCode)
         {
             string? jsonFileName = GetJsonFileName(examCode);
