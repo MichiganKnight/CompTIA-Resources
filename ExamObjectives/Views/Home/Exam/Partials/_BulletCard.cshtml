@@ -1,8 +1,5 @@
 ﻿@model ExamObjectives.Models.ViewModels.BulletCardViewModel
-
-@using Newtonsoft.Json
 @using ExamObjectives.Models.ViewModels
-
 @{
     Bullet bullet = Model.Bullet;
     Domain domain = Model.Domain;
@@ -24,40 +21,14 @@
                 </div>
 
                 <div class="btn-group btn-group-sm">
-                    <button class="btn btn-outline-secondary checklist-edit-button"
-                            type="button"
-                            data-exam-code="@examCode"
-                            data-item-type="bullet"
-                            data-domain-id="@domain.Id"
-                            data-objective-id="@objective.Id"
-                            data-bullet-index="@bulletIndex"
-                            data-text="@bullet.Text"
-                            data-children='@Html.Raw(JsonConvert.SerializeObject(bullet.Children))'>
-                        Edit
-                    </button>
+                    @await Html.PartialAsync("Exam/Partials/Buttons/_EditButton", Model)
 
-                    <button class="btn btn-outline-danger checklist-delete-button"
-                            type="button"
-                            data-exam-code="@examCode"
-                            data-item-type="bullet"
-                            data-domain-id="@domain.Id"
-                            data-objective-id="@objective.Id"
-                            data-bullet-index="@bulletIndex">
-                        Delete
-                    </button>
+                    @await Html.PartialAsync("Exam/Partials/Buttons/_DeleteButton", Model)
                 </div>
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-outline-primary btn-sm checklist-add-button"
-                        type="button"
-                        data-exam-code="@examCode"
-                        data-item-type="child-bullet"
-                        data-domain-id="@domain.Id"
-                        data-objective-id="@objective.Id"
-                        data-bullet-index="@bulletIndex">
-                    Add Child
-                </button>
+                @await Html.PartialAsync("Exam/Partials/Buttons/_AddButton", Model)
             </div>
 
             <div class="d-flex flex-column gap-2 ps-3">
@@ -97,27 +68,9 @@
                 </div>
 
                 <div class="btn-group btn-group-sm">
-                    <button class="btn btn-outline-secondary checklist-edit-button"
-                            type="button"
-                            data-exam-code="@examCode"
-                            data-item-type="bullet"
-                            data-domain-id="@domain.Id"
-                            data-objective-id="@objective.Id"
-                            data-bullet-index="@bulletIndex"
-                            data-text="@bullet.Text"
-                            data-children='@Html.Raw(JsonConvert.SerializeObject(bullet.Children))'>
-                        Edit
-                    </button>
+                    @await Html.PartialAsync("Exam/Partials/Buttons/_EditButton", Model)
 
-                    <button class="btn btn-outline-danger checklist-delete-button"
-                            type="button"
-                            data-exam-code="@examCode"
-                            data-item-type="bullet"
-                            data-domain-id="@domain.Id"
-                            data-objective-id="@objective.Id"
-                            data-bullet-index="@bulletIndex">
-                        Delete
-                    </button>
+                    @await Html.PartialAsync("Exam/Partials/Buttons/_DeleteButton", Model)
                 </div>
             </div>
         }

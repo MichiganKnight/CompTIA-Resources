@@ -15,12 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ace8fdfd-c5d3-4646-a520-78a687d23060" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Models/ErrorViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Models/ViewModels/ErrorViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Services/ChecklistService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Services/ChecklistService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Shared/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Shared/Error.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/ExamObjectives.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/ExamObjectives.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_BulletCard.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_BulletCard.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +46,9 @@
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Models/ViewModels/NestedBulletViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Services/ChecklistService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Services/ChecklistServiceResult.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1201.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/220-1202.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/Buttons/_AddButton.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/Buttons/_DeleteButton.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/Buttons/_EditButton.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_BulletCard.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_ChecklistEditorModal.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ExamObjectives/Views/Home/Exam/Partials/_NestedBullet.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -159,7 +156,7 @@
       <workItem from="1783447635616" duration="193000" />
       <workItem from="1783447830996" duration="2987000" />
       <workItem from="1783625748757" duration="8063000" />
-      <workItem from="1783710410083" duration="2798000" />
+      <workItem from="1783710410083" duration="3159000" />
     </task>
     <servers />
   </component>

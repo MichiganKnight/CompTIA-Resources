@@ -1,0 +1,17 @@
+﻿@model ExamObjectives.Models.ViewModels.BulletCardViewModel
+@{
+    Domain domain = Model.Domain;
+    Objective objective = Model.Objective;
+    string examCode = Model.ExamCode;
+    int bulletIndex = Model.BulletIndex;
+}
+
+<button class="btn btn-outline-primary btn-sm checklist-add-button"
+        type="button"
+        data-exam-code="@examCode"
+        data-item-type="child-bullet"
+        data-domain-id="@domain.Id"
+        data-objective-id="@objective.Id"
+        data-bullet-index="@bulletIndex">
+    Add Child
+</button>
